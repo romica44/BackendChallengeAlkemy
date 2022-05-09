@@ -4,9 +4,7 @@ var Character = require('../../sequelize/models/character')
 var { Op } = require('sequelize')
 
 router.get('/', async (req, res, next) => {
-    let limitedQueries = limitToFields(req.query, fields)
-
-    if (req.query.id) {
+   if (req.query.id) {
         let { id } = req.query
         if (isNaN(id)) return res.status(400).send("ID must be an integer.")
         Character.findOne({ where: { id } })
